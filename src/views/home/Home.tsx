@@ -1,13 +1,4 @@
-import { Heading } from '@chakra-ui/react'
-import React from 'react'
+import React from 'react';
 
-const Home = () => {
-    return(
-        <Heading as="h1">
-            Home Typescript
-        </Heading>
-    )
-}
-
-
-export default Home
+const Home: React.FC = () => <h1>Home</h1>;
+export default Home;

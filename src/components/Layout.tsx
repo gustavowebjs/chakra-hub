@@ -1,20 +1,20 @@
-import React from 'react'
-import Navigation from './Navigation'
-import { Container} from '@chakra-ui/react'
+import React from 'react';
+import { Container } from '@chakra-ui/react';
+import Navigation from './Navigation';
 
-export interface Props{
-    children: JSX.Element
+export interface Props {
+  children: JSX.Element;
 }
 
-const Layout = ({children} : Props) => {
-    return(
-        <div>
-            <Navigation />
-             <Container maxW="container.xl">
-                {children}
-            </Container>
-        </div>
-    )
-}
+const Layout: React.FC<Props> = (props: Props) => {
+  const { children } = props;
 
-export default Layout
+  return (
+    <div>
+      <Navigation />
+      <Container maxW="container.xl">{children}</Container>
+    </div>
+  );
+};
+
+export default Layout;
