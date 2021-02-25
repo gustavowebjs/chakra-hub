@@ -1,9 +1,5 @@
-.navigation-box{
-    background-color: #333;
-    color: #fff;
-}
-
-.navigation li{
-    display: inline-block;
-    padding: 5px 20px;
+.navigation li {
+  display: inline-block;
+  width: auto;
+  padding: 5px 20px;
 }
