@@ -1,33 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { ListItem, Image, Flex, Box, Text, Button } from '@chakra-ui/react';
 import { ViewIcon } from '@chakra-ui/icons';
-import axios from 'axios';
 
-const Profile: React.FC<{ query: string }> = ({ query }: { query: string }) => {
-  interface User {
-    id: string;
-    name: string;
-  }
+interface ProfileProps {
+  profile: {
+    name?: string;
+    login?: string;
+    avatarUrl?: string;
+    url?: string;
+  };
+}
 
-  const [loading, setLoading] = useState(false);
-  const [users, setUsers] = useState([]);
-
-  async function fetchUsers(): Promise<void> {
-    try {
-      setLoading(true);
-
-      const response = await axios.get(`https://api.github.com/users/${query}`);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
+const Profile: React.FC<ProfileProps> = ({ profile }: ProfileProps) => {
   return (
     <ListItem bgColor="#efefef" p="5" borderRadius="10px">
       <Flex alignItems="center">
@@ -35,15 +19,15 @@ const Profile: React.FC<{ query: string }> = ({ query }: { query: string }) => {
           fallbackSrc="https://via.placeholder.com/150"
           borderRadius="full"
           boxSize="100px"
-          src="https://bit.ly/sage-adebayo"
+          src={profile.avatarUrl}
           alt="Joseph"
         />
         <Box pl="3">
           <Text fontWeight="bold" fontSize="20px" color="#666">
-            Joseph Willan
+            {profile.name}
           </Text>
           <Text fontSize="14px" color="#333">
-            @josephgithub
+            {profile.login}
           </Text>
           <Button
             variant="solid"
@@ -52,7 +36,13 @@ const Profile: React.FC<{ query: string }> = ({ query }: { query: string }) => {
             size="sm"
             colorScheme="purple"
           >
-            View Profile
+            <a
+              rel="noreferrer"
+              href={`https://github.com/${profile.login}`}
+              target="_blank"
+            >
+              View Profile
+            </a>
           </Button>
         </Box>
       </Flex>
